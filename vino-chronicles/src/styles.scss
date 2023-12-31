@@ -36,3 +36,10 @@ $vino-chronicles-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button[mat-button],
+button[mat-flat-button],
+a[mat-button],
+a[mat-flat-button] {
+  border-radius: 24px;
+}

@@ -1,0 +1,23 @@
+:host {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-btn {
+    margin-top: 8px;
+    width: 200px;
+}
+
+.wine-form {
+    border-radius: 8px;
+    border: 1px solid rgb(218,220,224);
+    margin: 8px 0;
+    padding: 20px 16px 0 16px;
+}

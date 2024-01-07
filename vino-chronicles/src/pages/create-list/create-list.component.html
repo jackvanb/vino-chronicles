@@ -1,0 +1,36 @@
+<h1>Create new wine list</h1>
+<form>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Address</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</form>
+
+<ng-container *ngFor="let w of wines; index as i">
+  <form class="wine-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </form>
+</ng-container>
+
+<button mat-button color="primary" (click)="addWine()">
+  Add wine<mat-icon>add</mat-icon>
+</button>
+
+<button mat-flat-button class="submit-btn" color="primary" (click)="onSave()">
+  Save
+</button>

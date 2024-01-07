@@ -25,11 +25,11 @@ import { Wine } from '../../types/wine';
     MatInputModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './create-list.component.html',
-  styleUrl: './create-list.component.scss',
+  templateUrl: './create-event.component.html',
+  styleUrl: './create-event.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateListComponent {
+export class CreateEventComponent {
   readonly eventForm = new FormGroup({
     title: new FormControl(''),
     address: new FormControl(''),

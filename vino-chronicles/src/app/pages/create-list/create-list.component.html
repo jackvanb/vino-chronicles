@@ -1,31 +1,33 @@
 <h1>Create new wine list</h1>
-<form>
+<form [formGroup]="eventForm">
   <mat-form-field>
     <mat-label>Title</mat-label>
-    <input matInput>
+    <input matInput formControlName="title">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Address</mat-label>
-    <input matInput>
+    <input matInput formControlName="address">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
 </form>
 
-<ng-container *ngFor="let w of wines; index as i">
-  <form class="wine-form">
-    <mat-form-field appearance="outline">
-      <mat-label>Title</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-  </form>
-</ng-container>
+<form [formGroup]="wineForm">
+  <ng-container formArrayName="wine">
+    <div *ngFor="let w of wineFormArray.controls; index as i" class="wine-entry" [formGroupName]="i">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</form>
 
 <button mat-button color="primary" (click)="addWine()">
   Add wine<mat-icon>add</mat-icon>

@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { Event } from '../../types/event';
-import { Wine } from '../../types/wine';
 
 @Component({
   selector: 'app-create-list',

@@ -1,0 +1,25 @@
+:host {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.description {
+  padding: 16px 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.location {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.wine-container {
+  padding: 8px 0;
+}

@@ -1,8 +1,8 @@
 <h1>{{ event.title }}</h1>
-<div>
-  <span>{{ event.address}}</span>
-  <span>{{ event.description}}</span>
+<div class="info">
+  <div class="location"><mat-icon>location_on</mat-icon>{{ event.address }}</div>
+  <div class="description">{{ event.description}}</div>
 </div>
-<div>
-  
+<div *ngFor="let wine of event.wineList" class="wine-container">
+  <app-wine-card [wine]="wine"></app-wine-card>
 </div>

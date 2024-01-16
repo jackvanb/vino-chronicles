@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ChangeDetectorRef,
+} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -10,8 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterModule } from '@angular/router';
 
 import { Event } from '../../types/event';
+import { EventsService } from '../../services/events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-list',
@@ -22,13 +30,22 @@ import { Event } from '../../types/event';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
+  providers: [EventsService],
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateEventComponent {
+  constructor(
+    private cd: ChangeDetectorRef,
+    private eventsService: EventsService,
+    private router: Router
+  ) {}
+
   readonly eventForm = new FormGroup({
     title: new FormControl(''),
     address: new FormControl(''),
@@ -40,6 +57,8 @@ export class CreateEventComponent {
     wine: this.wineFormArray,
   });
 
+  savingEvent = false;
+
   addWine() {
     this.wineFormArray.push(
       new FormGroup({
@@ -49,7 +68,7 @@ export class CreateEventComponent {
     );
   }
 
-  onSave() {
+  async onSave() {
     if (this.eventForm.valid && this.wineForm.valid) {
       const event: Event = {
         title: this.eventForm.get('title')?.value ?? '',
@@ -62,7 +81,14 @@ export class CreateEventComponent {
           };
         }),
       };
-      console.log(event);
+
+      this.savingEvent = true;
+      this.cd.markForCheck();
+      const eventId = await this.eventsService.createEvent(event);
+      this.savingEvent = false;
+      this.cd.markForCheck();
+
+      this.router.navigate(['/event', eventId]);
     }
   }
 }

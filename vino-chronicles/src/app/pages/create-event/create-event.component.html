@@ -33,6 +33,10 @@
   Add wine<mat-icon>add</mat-icon>
 </button>
 
-<button mat-flat-button class="submit-btn" color="primary" (click)="onSave()">
-  Save
+<button mat-flat-button class="submit-btn" color="primary" [disabled]="savingEvent" (click)="onSave()">
+  <div *ngIf="savingEvent" class="spinner">
+    <mat-spinner [diameter]="20"></mat-spinner>
+    Saving...
+  </div>
+  <ng-container *ngIf="!savingEvent">Save</ng-container>
 </button>

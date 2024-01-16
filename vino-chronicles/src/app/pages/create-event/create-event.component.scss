@@ -10,6 +10,11 @@ form {
     flex-direction: column;
 }
 
+.spinner {
+  display: flex;
+  gap: 16px
+}
+
 .submit-btn {
     margin-top: 8px;
     width: 200px;

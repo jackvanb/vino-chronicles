@@ -10,7 +10,7 @@ export const routes: Routes = [
     component: CreateEventComponent,
   },
   {
-    path: 'view',
+    path: 'event/:id',
     component: ViewEventComponent,
   },
   {

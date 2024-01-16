@@ -1,3 +1,4 @@
+<ng-container *ngIf="event">
 <h1>{{ event.title }}</h1>
 <div class="info">
   <div class="location"><mat-icon>location_on</mat-icon>{{ event.address }}</div>
@@ -6,3 +7,4 @@
 <div *ngFor="let wine of event.wineList" class="wine-container">
   <app-wine-card [wine]="wine"></app-wine-card>
 </div>
+<ng-container></ng-container>

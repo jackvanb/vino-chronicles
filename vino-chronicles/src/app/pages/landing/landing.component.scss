@@ -1,7 +1,11 @@
 :host {
-    align-items: center;
-    align-self: center;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex: 1;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
 }

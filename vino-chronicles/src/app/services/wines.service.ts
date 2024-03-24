@@ -35,10 +35,14 @@ export class WinesService {
 
     if (wineSnap.exists()) {
       const data = wineSnap.data();
-      return {
+      const wine: Wine = {
         title: data['title'],
         description: data['description'],
       };
+      if (data['lat'] && data['lng']) {
+        wine.location = { lat: data['lat'], lng: data['lng'] };
+      }
+      return wine;
     } else {
       console.error('Wine does not exist.');
       return undefined;
@@ -48,7 +52,9 @@ export class WinesService {
   private async createWine(wine: Wine): Promise<string> {
     const newWineRef = await addDoc(collection(this.db, WINE_COLLECTION_ID), {
       title: wine.title,
-      descrption: wine.description,
+      description: wine.description,
+      lat: wine.location?.lat,
+      lng: wine.location?.lng,
     });
 
     return newWineRef.id;

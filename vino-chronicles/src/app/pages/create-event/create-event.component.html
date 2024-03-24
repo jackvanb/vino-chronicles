@@ -2,11 +2,11 @@
 <form [formGroup]="eventForm">
   <mat-form-field>
     <mat-label>Title</mat-label>
-    <input matInput formControlName="title">
+    <input matInput formControlName="title" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Address</mat-label>
-    <input matInput formControlName="address">
+    <input matInput formControlName="address" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Description</mat-label>
@@ -16,10 +16,18 @@
 
 <form [formGroup]="wineForm">
   <ng-container formArrayName="wine">
-    <div *ngFor="let w of wineFormArray.controls; index as i" class="wine-entry" [formGroupName]="i">
+    <div
+      *ngFor="let w of wineFormArray.controls; index as i"
+      class="wine-entry"
+      [formGroupName]="i"
+    >
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input matInput formControlName="title">
+        <input matInput formControlName="title" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput id="loc{{ i }}" formControlName="location" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
@@ -33,7 +41,13 @@
   Add wine<mat-icon>add</mat-icon>
 </button>
 
-<button mat-flat-button class="submit-btn" color="primary" [disabled]="savingEvent" (click)="onSave()">
+<button
+  mat-flat-button
+  class="submit-btn"
+  color="primary"
+  [disabled]="savingEvent"
+  (click)="onSave()"
+>
   <div *ngIf="savingEvent" class="spinner">
     <mat-spinner [diameter]="20"></mat-spinner>
     Saving...

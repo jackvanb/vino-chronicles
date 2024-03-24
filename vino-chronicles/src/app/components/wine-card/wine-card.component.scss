@@ -2,6 +2,18 @@ mat-card-actions {
   margin: 16px;
 }
 
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .mat-caption {
   padding-right: 8px;
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+  max-width: 400px;
 }

@@ -33,6 +33,17 @@
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tasting Notes</mat-label>
+        <mat-select formControlName="tastingNotes" multiple>
+          <mat-option
+            *ngFor="let tastingNote of wineTastingNotes | keyvalue"
+            [value]="tastingNote.key"
+          >
+            {{ tastingNote.key }} {{ tastingNote.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </ng-container>
 </form>

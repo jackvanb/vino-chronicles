@@ -6,6 +6,11 @@
   </mat-card-header>
   <mat-card-content>
     {{ wine.description }}
+    <mat-chip-set aria-label="tasting notes">
+      <mat-chip *ngFor="let tastingNote of wine.tastingNotes">
+       {{ tastingNote }} {{ wineTastingNotes.get(tastingNote) }}
+      </mat-chip>
+    </mat-chip-set>
     <div class="map-container">
       <google-map
         *ngIf="wine.location"

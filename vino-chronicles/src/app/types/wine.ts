@@ -1,5 +1,6 @@
 export interface Wine {
   title: string;
-  description?: string;
+  description: string;
   location?: google.maps.LatLngLiteral;
+  tastingNotes: string[];
 }

@@ -38,9 +38,13 @@ export class WinesService {
       const wine: Wine = {
         title: data['title'],
         description: data['description'],
+        tastingNotes: [],
       };
       if (data['lat'] && data['lng']) {
         wine.location = { lat: data['lat'], lng: data['lng'] };
+      }
+      if (data['tastingNotes']) {
+        wine.tastingNotes = data['tastingNotes'];
       }
       return wine;
     } else {
@@ -55,6 +59,7 @@ export class WinesService {
       description: wine.description,
       lat: wine.location?.lat,
       lng: wine.location?.lng,
+      tastingNotes: wine.tastingNotes,
     });
 
     return newWineRef.id;

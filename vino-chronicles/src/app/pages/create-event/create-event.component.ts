@@ -15,10 +15,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
 import { Event } from '../../types/event';
+import { WINE_TASTING_NOTES } from '../../shared/tasting_notes';
 import { EventsService } from '../../services/events.service';
 import { Router } from '@angular/router';
 
@@ -33,6 +35,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     ReactiveFormsModule,
     RouterModule,
   ],
@@ -47,6 +50,8 @@ export class CreateEventComponent {
     private eventsService: EventsService,
     private router: Router
   ) {}
+
+  readonly wineTastingNotes = WINE_TASTING_NOTES;
 
   readonly eventForm = new FormGroup({
     title: new FormControl(''),
@@ -72,6 +77,7 @@ export class CreateEventComponent {
         title: new FormControl(''),
         location: new FormControl(''),
         description: new FormControl(''),
+        tastingNotes: new FormControl([]),
       })
     );
 
@@ -100,7 +106,6 @@ export class CreateEventComponent {
         address: this.eventForm.get('address')?.value ?? '',
         description: this.eventForm.get('description')?.value ?? '',
         wineList: this.wineFormArray.controls.map((group, index) => {
-          console.log(group.get('location')?.value);
           let latLng: google.maps.LatLngLiteral | undefined = undefined;
           if (this.wineIndexToPlaceMap.has(index)) {
             const place = this.wineIndexToPlaceMap.get(index)!;
@@ -114,6 +119,7 @@ export class CreateEventComponent {
             title: group.get('title')?.value ?? '',
             description: group.get('description')?.value ?? '',
             location: latLng,
+            tastingNotes: group.get('tastingNotes')?.value ?? [],
           };
         }),
       };
